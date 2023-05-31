@@ -1,0 +1,20 @@
+name: Visualization of Unity Project
+on:
+  push:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: windows-latest
+    steps: 
+    - uses: actions/checkout@v3
+      with:
+        ref: main
+    - name: Repo Visualizer
+      uses: githubocto/repo-visualizer@0.8.2
+      with:
+        output_file: "Project-output-diagram.svg"
+        excluded_paths: "dist,node_modules"
+        excluded_globs: '**/*.{meta,wlt}'
+        root_path: "Unity/Assets/"
+        file_colors: '{"asset":"#ff7344","anim":"#116591","cs":"#4969a8","prefab":"#8069b3","unity":"#b564ae", "md":"#e05f9a", "mat":"#fe647a","shader":"#ff7854","json":"#ff9729","txt":"#ff347a"}'
